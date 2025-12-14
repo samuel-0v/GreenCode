@@ -2,21 +2,23 @@
   {
     "id": "bee-1003",
     "title": "Soma Simples",
-    "description": "Leia dois valores inteiros, no caso para variáveis A e B. A seguir, calcule a soma entre elas e atribua à variável SOMA.",
+    "description": "Leia dois valores inteiros...",
     "platformId": "beecrowd",
     "difficulty": "easy",
     "language": "javascript",
     "codeDate": "2023-12-14",
-    "solutionFile": "1003-soma-simples.js"
+    "solutionFile": "1003-soma-simples.js",
+    "link": "https://www.beecrowd.com.br/judge/pt/problems/view/1003" 
   },
   {
     "id": "leet-20",
     "title": "Valid Parentheses",
-    "description": "Dada uma string contendo apenas os caracteres '(', ')', '{', '}', '[' e ']', determine se a string de entrada é válida.",
+    "description": "Dada uma string contendo apenas...",
     "platformId": "leetcode",
     "difficulty": "medium",
     "language": "cpp",
     "codeDate": "2024-01-10",
-    "solutionFile": "20-valid-parentheses.cpp"
+    "solutionFile": "20-valid-parentheses.cpp",
+    "link": "https://leetcode.com/problems/valid-parentheses/"
   }
 ]

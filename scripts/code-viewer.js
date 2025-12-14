@@ -29,6 +29,14 @@ async function loadSolution() {
 
         document.getElementById('file-name').textContent = challenge.solutionFile;
 
+        const btnExternal = document.getElementById('external-link');
+        if (challenge.link) {
+            btnExternal.href = challenge.link;
+            btnExternal.style.display = 'inline-flex'; // Mostra se tiver link
+        } else {
+            btnExternal.style.display = 'none'; // Esconde se não tiver
+        }
+
         // Buscar código
         const codePath = `solutions/${challenge.platformId}/${challenge.language}/${challenge.solutionFile}`;
         const codeResponse = await fetch(codePath);
