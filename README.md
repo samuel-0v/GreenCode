@@ -41,7 +41,7 @@ GreenCode/
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/samuel-0v/GreenCode.git](https://github.com/samuel-0v/GreenCode.git)
+   git clone https://github.com/samuel-0v/GreenCode.git
    ```
 
 2. Abra o `index.html` no seu navegador.
