@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Desafios | GreenCode</title>
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Estilos específicos para o formulário */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .form-control {
+            width: 100%;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-family: var(--font-main);
+        }
+        .form-control:focus { border-color: var(--green-accent); outline: none; }
+        .btn-generate {
+            background: var(--green-accent);
+            color: white;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-generate:hover { background: var(--green-hover); }
+        
+        .output-area {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        textarea.code-output {
+            width: 100%;
+            height: 200px;
+            background: transparent;
+            border: none;
+            color: #e6edf3;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <i data-lucide="settings" style="color: var(--green-accent);"></i>
+                <h1>Gerador de JSON</h1>
+            </div>
+            <a href="index.html" class="github-link">Voltar para Home</a>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 600px; padding: 2rem 1.5rem;">
+        
+        <form id="challenge-form">
+            <div class="form-group">
+                <label>Plataforma</label>
+                <select id="platform" class="form-control">
+                    <option value="beecrowd">Beecrowd</option>
+                    <option value="leetcode">LeetCode</option>
+                    <option value="neps">Neps Academy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label>ID Original</label>
+                        <input type="text" id="origId" class="form-control" required placeholder="1003">
+                    </div>
+                    <div style="flex: 2;">
+                        <label>Título do Desafio</label>
+                        <input type="text" id="title" class="form-control" required placeholder="Soma Simples">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Link Original do Desafio</label>
+                <input type="url" id="link" class="form-control" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label>Descrição Curta</label>
+                <input type="text" id="desc" class="form-control" required placeholder="Resumo do problema...">
+            </div>
+
+            <div class="form-group">
+                <div style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label>Dificuldade</label>
+                        <select id="difficulty" class="form-control">
+                            <option value="easy">Fácil (Easy)</option>
+                            <option value="medium">Médio (Medium)</option>
+                            <option value="hard">Difícil (Hard)</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Linguagem</label>
+                        <select id="language" class="form-control">
+                            <option value="javascript">JavaScript</option>
+                            <option value="cpp">C++</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-generate">
+                <i data-lucide="code"></i> Gerar JSON
+            </button>
+        </form>
+
+        <div id="result" class="output-area" style="display: none;">
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.85rem;">
+                Copie o objeto abaixo (incluindo a vírgula inicial) e cole no final do seu <code>data/challenges.json</code>:
+            </p>
+            <textarea id="json-output" class="code-output" readonly></textarea>
+            
+            <p style="color: var(--green-accent); margin-top: 1rem; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <strong>Próximo passo:</strong> Crie o arquivo de código em:
+                <br>
+                <code id="path-output" style="color: white;"></code>
+            </p>
+        </div>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        document.getElementById('challenge-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // 1. Coletar dados
+            const platform = document.getElementById('platform').value;
+            const origId = document.getElementById('origId').value;
+            const title = document.getElementById('title').value;
+            const desc = document.getElementById('desc').value;
+            const link = document.getElementById('link').value;
+            const diff = document.getElementById('difficulty').value;
+            const lang = document.getElementById('language').value;
+
+            // 2. Gerar campos automáticos
+            const finalId = `${platform}-${origId}`;
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Extensão do arquivo
+            const extMap = {'javascript': 'js', 'cpp': 'cpp', 'python': 'py', 'java': 'java'};
+            const ext = extMap[lang] || 'txt';
+            
+            // Nome do arquivo seguro (sem espaços)
+            const safeTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            const fileName = `${origId}-${safeTitle}.${ext}`;
+
+            // 3. Montar Objeto JSON
+            const newObj = {
+                id: finalId,
+                title: title,
+                description: desc,
+                platformId: platform,
+                difficulty: diff,
+                language: lang,
+                codeDate: today,
+                solutionFile: fileName,
+                link: link
+            };
+
+            // 4. Mostrar resultado
+            const jsonString = ",\n" + JSON.stringify(newObj, null, 2);
+            document.getElementById('json-output').value = jsonString;
+            
+            document.getElementById('path-output').textContent = 
+                `solutions/${platform}/${lang}/${fileName}`;
+
+            document.getElementById('result').style.display = 'block';
+            
+            // Scroll até o resultado
+            document.getElementById('result').scrollIntoView({behavior: "smooth"});
+        });
+    </script>
+</body>
+</html>
