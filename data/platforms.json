@@ -1,0 +1,17 @@
+[
+  {
+    "id": "beecrowd",
+    "name": "Beecrowd",
+    "baseUrl": "https://www.beecrowd.com.br/judge/pt/problems/view/"
+  },
+  {
+    "id": "leetcode",
+    "name": "LeetCode",
+    "baseUrl": "https://leetcode.com/problems/"
+  },
+  {
+    "id": "neps",
+    "name": "Neps Academy",
+    "baseUrl": "https://neps.academy/br/exercise/"
+  }
+]

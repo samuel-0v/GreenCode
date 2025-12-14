@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Código | GreenCode</title>
+    
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    
+    <style>
+        .code-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .code-header {
+            background-color: rgba(255,255,255,0.03);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-copy {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+        pre { margin: 0; padding: 0; }
+        code { font-family: var(--font-code) !important; font-size: 0.95rem; line-height: 1.5; padding: 1.5rem !important; }
+        
+        .meta-tags { display: flex; gap: 1rem; margin-top: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 1rem; color: var(--green-accent); font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <i data-lucide="terminal-square" color="var(--green-accent)"></i>
+                <h1>GreenCode</h1>
+            </div>
+            <a href="index.html" class="github-link">Voltar para Home</a>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 2rem;">
+        <a href="index.html" class="back-link" style="display: inline-flex; align-items: center; gap: 5px;">
+            <i data-lucide="arrow-left" width="16"></i> 
+            Voltar para lista
+        </a>
+        
+        <div id="loading-msg">Carregando solução...</div>
+
+        <article id="solution-content" style="display: none;">
+            <header>
+                <h1 id="challenge-title" style="font-size: 2rem; color: var(--text-primary);">Título</h1>
+                <div class="meta-tags">
+                    <span id="meta-platform" class="platform-tag">Plataforma</span>
+                    <span id="meta-difficulty" class="difficulty">Dificuldade</span>
+                </div>
+            </header>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="file-code" width="16" color="var(--text-secondary)"></i>
+                        <span id="file-name" style="color: var(--text-secondary); font-family: var(--font-code); font-size: 0.9rem;">arquivo.js</span>
+                    </div>
+                    
+                    <button class="btn-copy" onclick="copyCode()" style="display: flex; align-items: center; gap: 6px;">
+                        <i data-lucide="copy" width="14"></i>
+                        <span>Copiar Código</span>
+                    </button>
+                </div>
+                <pre><code id="code-block" class="language-javascript">
+                </code></pre>
+            </div>
+        </article>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="scripts/code-viewer.js"></script>
+</body>
+</html>

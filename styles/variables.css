@@ -1,0 +1,21 @@
+/* Importando a fonte Inter (Texto) e JetBrains Mono (Código) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Paleta de Cores - Baseado no Plano [cite: 12] */
+    --bg-main: #0d1117;          /* Background principal */
+    --bg-card: #161b22;          /* Cards */
+    --border-color: #30363d;     /* Bordas */
+    
+    --text-primary: #c9d1d9;     /* Texto principal */
+    --text-secondary: #8b949e;   /* Texto secundário */
+    
+    --green-accent: #2ea043;     /* Verde destaque */
+    --green-hover: #39d353;      /* Verde neon hover */
+    --error-color: #f85149;      /* Erro */
+
+    /* Configurações Globais */
+    --font-main: 'Inter', sans-serif;          /* Fonte [cite: 19] */
+    --font-code: 'JetBrains Mono', monospace;  /* Fonte para código [cite: 19] */
+    --transition-speed: 0.2s;                  /* Animações suaves [cite: 21] */
+}

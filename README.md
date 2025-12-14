@@ -1,26 +1,54 @@
 # 🟢 GreenCode
 
-> Centralizador de soluções de desafios de programação com visual moderno e focado em leitura de código.
+> Hub pessoal de soluções de desafios de programação (Beecrowd, LeetCode, Neps) com visual Dark Mode inspirado no GitHub.
 
-## 🎯 Objetivo
-Um hub estático para documentar e visualizar soluções de desafios (Beecrowd, Neps, LeetCode) com uma experiência de usuário fluida e visual "Dark Mode" inspirado no GitHub.
+![Project Status](https://img.shields.io/badge/status-active-success)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-## 🛠️ Tecnologias
-- **HTML5 & CSS3** (Sem frameworks)
-- **JavaScript** (Vanilla)
-- **Highlight.js** (Para syntax highlighting)
-- **Hospedagem:** GitHub Pages
+## 📸 Preview
+
+*Um visual limpo, responsivo e focado na leitura de código.*
+
+## ✨ Funcionalidades
+
+- **🎨 Design System Customizado**: Tema escuro (`#0d1117`) com acentos em verde neon, sem uso de frameworks CSS pesados.
+- **⚡ Performance**: Carregamento instantâneo com *Skeleton Loading* para melhor UX.
+- **🔍 Filtros Dinâmicos**: Busca em tempo real por nome do desafio ou plataforma.
+- **💻 Syntax Highlighting**: Integração com `Highlight.js` usando o tema GitHub Dark.
+- **📱 Responsividade**: Layout fluido que se adapta de monitores ultrawide a dispositivos móveis.
+- **📋 Copiar Código**: Funcionalidade de "Copy to Clipboard" integrada.
+
+## 🛠️ Tecnologias Utilizadas
+
+- **HTML5 & CSS3** (Variáveis CSS, Grid Layout, Flexbox)
+- **JavaScript (ES6+)** (Fetch API, DOM Manipulation)
+- **Highlight.js** (Coloração de sintaxe)
+- **Lucide Icons** (Ícones vetoriais leves)
+- **JSON** (Armazenamento de dados estático)
 
 ## 📂 Estrutura do Projeto
-/data        -> JSONs com metadados dos desafios e plataformas
-/solutions   -> Arquivos de código fonte organizados
-/styles      -> CSS modular (variables, layout, themes)
-/scripts     -> Lógica de renderização e rotas
 
-## 🚀 Como usar
-Este projeto é estático. Para visualizar:
-1. Clone o repositório.
-2. Abra o arquivo `index.html` no navegador (ou use uma extensão como Live Server).
+```bash
+GreenCode/
+├── data/            # "Banco de dados" JSON
+├── solutions/       # Código fonte dos desafios (organizado por plataforma)
+├── styles/          # CSS modular (main, variables, themes)
+├── scripts/         # Lógica JS (renderização, filtros)
+└── index.html       # Entry point
+```
+
+## 🚀 Como rodar localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone [https://github.com/SEU-USUARIO/GreenCode.git](https://github.com/SEU-USUARIO/GreenCode.git)
+   ```
+
+2. Abra o `index.html` no seu navegador.
+   *(Nota: Para carregar os arquivos JSON corretamente, recomenda-se usar o Live Server ou rodar um servidor local simples)*:
+   ```bash
+   python3 -m http.server
+   ```
 
 ---
-Desenvolvido por Samuel Victor Alventino Silva
+Desenvolvido por **Samuel Victor** 🚀

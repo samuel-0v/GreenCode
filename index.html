@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenCode | Soluções de Desafios</title>
+    
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <i data-lucide="terminal-square" color="var(--green-accent)"></i>
+                <h1>GreenCode</h1>
+            </div>
+            <a href="https://github.com/SEU-USUARIO/GreenCode" target="_blank" class="github-link">
+                GitHub Repo ↗
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters-section">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar desafio...">
+            </div>
+            
+            <div class="filter-group">
+                <select id="platform-filter">
+                    <option value="all">Todas Plataformas</option>
+                    </select>
+                <select id="lang-filter">
+                    <option value="all">Todas Linguagens</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="challenges-grid" class="challenges-grid">
+        </section>
+    </main>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
